@@ -1,4 +1,10 @@
 
 module.exports = function towelSort (matrix) {
-    return matrix ? matrix.map(line => line.slice()).map((line, i) => i % 2 ? line.reverse() : line).flat() : [];
+    if (!matrix) return [];
+    matrix = matrix.map(line => line.slice()); // ensure immutability
+    matrix.forEach((line, i) => {
+        if (i % 2 === 1)                       // towel sort
+            line.reverse();
+    });
+    return matrix.flat();
 }
